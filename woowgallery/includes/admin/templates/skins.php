@@ -6,4 +6,4 @@
  * @package woowgallery
  * @author  Sergey Pasyuk
  */
-use  WoowGallery\Admin\Admin ;
+use WoowGallery\Admin\Admin;

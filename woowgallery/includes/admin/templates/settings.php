@@ -6,10 +6,10 @@
  * @package woowgallery
  * @author  Sergey Pasyuk
  */
-use  WoowGallery\Admin\Settings ;
-use  WoowGallery\Assets ;
-use  WoowGallery\Lightbox ;
-use  WoowGallery\Posttypes ;
+use WoowGallery\Admin\Settings;
+use WoowGallery\Assets;
+use WoowGallery\Lightbox;
+use WoowGallery\Posttypes;
 /**
  * Template vars
  *
@@ -92,7 +92,7 @@ esc_html_e( 'Max Width', 'woowgallery' );
 ?></label>
 									<div class="wrapper">
 										<input id="wg-thumb-width" name="settings[thumb_width]" type="number" min="80" class="form-control" value="<?php 
-echo  (int) $settings['thumb_width'] ;
+echo (int) $settings['thumb_width'];
 ?>"/>
 									</div>
 								</div>
@@ -102,7 +102,7 @@ esc_html_e( 'Max Height', 'woowgallery' );
 ?></label>
 									<div class="wrapper">
 										<input id="wg-thumb-height" name="settings[thumb_height]" type="number" min="80" class="form-control" value="<?php 
-echo  (int) $settings['thumb_height'] ;
+echo (int) $settings['thumb_height'];
 ?>"/>
 									</div>
 								</div>
@@ -112,7 +112,7 @@ esc_html_e( 'Quality', 'woowgallery' );
 ?></label>
 									<div class="wrapper">
 										<input id="wg-thumb-quality" name="settings[thumb_quality]" type="number" min="1" max="100" class="form-control" value="<?php 
-echo  (int) $settings['thumb_quality'] ;
+echo (int) $settings['thumb_quality'];
 ?>"/>
 									</div>
 								</div>
@@ -121,9 +121,9 @@ echo  (int) $settings['thumb_quality'] ;
 						<div class="hint">
 							<?php 
 // translators: image size.
-echo  wp_kses( sprintf( __( 'Recommended thumbnail maximum dimensions is %s. It is a most suitable size for all WoowGallery skins.', 'woowgallery' ), '<code>400x600</code>' ), '' ) ;
+echo wp_kses( sprintf( __( 'Recommended thumbnail maximum dimensions is %s. It is a most suitable size for all WoowGallery skins.', 'woowgallery' ), '<code>400x600</code>' ), '' );
 // translators: image quality.
-echo  '<br />' . wp_kses( sprintf( __( '<strong>Note:</strong> high quality lead to bigger image file size and slower loading. Recommended quality range: %s.', 'woowgallery' ), '<code>80-85</code>' ), '' ) ;
+echo '<br />' . wp_kses( sprintf( __( '<strong>Note:</strong> high quality lead to bigger image file size and slower loading. Recommended quality range: %s.', 'woowgallery' ), '<code>80-85</code>' ), '' );
 ?>
 						</div>
 					</div>
@@ -140,7 +140,7 @@ esc_html_e( 'Max Width', 'woowgallery' );
 ?></label>
 									<div class="wrapper">
 										<input id="wg-image-width" name="settings[image_width]" type="number" min="400" class="form-control" value="<?php 
-echo  (int) $settings['image_width'] ;
+echo (int) $settings['image_width'];
 ?>"/>
 									</div>
 								</div>
@@ -150,7 +150,7 @@ esc_html_e( 'Max Height', 'woowgallery' );
 ?></label>
 									<div class="wrapper">
 										<input id="wg-image-height" name="settings[image_height]" type="number" min="400" class="form-control" value="<?php 
-echo  (int) $settings['image_height'] ;
+echo (int) $settings['image_height'];
 ?>"/>
 									</div>
 								</div>
@@ -160,7 +160,7 @@ esc_html_e( 'Quality', 'woowgallery' );
 ?></label>
 									<div class="wrapper">
 										<input id="wg-image-quality" name="settings[image_quality]" type="number" min="1" max="100" class="form-control" value="<?php 
-echo  (int) $settings['image_quality'] ;
+echo (int) $settings['image_quality'];
 ?>"/>
 									</div>
 								</div>
@@ -170,8 +170,8 @@ echo  (int) $settings['image_quality'] ;
 							<?php 
 esc_html_e( 'Determine the maximum dimensions in pixels to use when adding an image to the WoowGallery.', 'woowgallery' );
 // translators: link to WP Media Settings.
-echo  '<br />' . wp_kses( sprintf( __( '<strong>Note:</strong> To decrease usage of server\'s disk space you can set the same image size for `Large size` at <a href="%s">WordPress Media Settings</a>.', 'woowgallery' ), admin_url( 'options-media.php' ) ), '' ) ;
-echo  '<br />' . wp_kses( __( '<strong>Important:</strong> If you change `Thumbnail Size` or `Image Size` settings you need to re-save galleries to crop new image sizes.', 'woowgallery' ), '' ) ;
+echo '<br />' . wp_kses( sprintf( __( '<strong>Note:</strong> To decrease usage of server\'s disk space you can set the same image size for `Large size` at <a href="%s">WordPress Media Settings</a>.', 'woowgallery' ), admin_url( 'options-media.php' ) ), '' );
+echo '<br />' . wp_kses( __( '<strong>Important:</strong> If you change `Thumbnail Size` or `Image Size` settings you need to re-save galleries to crop new image sizes.', 'woowgallery' ), '' );
 ?>
 						</div>
 					</div>
@@ -199,7 +199,7 @@ esc_attr_e( 'Yes', 'woowgallery' );
 						<div class="hint">
 							<?php 
 esc_html_e( 'When deleting a Gallery, choose whether to delete all media associated with the gallery.', 'woowgallery' );
-echo  '<br />' . wp_kses( __( '<strong>Note:</strong> If media files are attached to other Posts (in the Media Library) or present in other Galleries, they will not be deleted.', 'woowgallery' ), '' ) ;
+echo '<br />' . wp_kses( __( '<strong>Note:</strong> If media files are attached to other Posts (in the Media Library) or present in other Galleries, they will not be deleted.', 'woowgallery' ), '' );
 ?>
 						</div>
 					</div>
@@ -218,12 +218,12 @@ esc_html_e( 'Add New Media', 'woowgallery' );
 checked( $settings['selection_prepend'], '1' );
 ?> />
 									<span class="wg-checked prepend-mode"><img src="<?php 
-echo  esc_url( plugins_url( 'assets/images/add-items.svg', WOOWGALLERY_FILE ) ) ;
+echo esc_url( plugins_url( 'assets/images/add-items.svg', WOOWGALLERY_FILE ) );
 ?>" width="32" height="32" alt="prepend icon"/> <?php 
 esc_html_e( 'Before Existing Media', 'woowgallery' );
 ?></span>
 									<span class="wg-unchecked append-mode"><img src="<?php 
-echo  esc_url( plugins_url( 'assets/images/add-items.svg', WOOWGALLERY_FILE ) ) ;
+echo esc_url( plugins_url( 'assets/images/add-items.svg', WOOWGALLERY_FILE ) );
 ?>" width="32" height="32" alt="append icon"/> <?php 
 esc_html_e( 'After Existing Media', 'woowgallery' );
 ?></span>
@@ -295,12 +295,12 @@ esc_html_e( 'Enable Standalone', 'woowgallery' );
 $_key = 'standalone_' . Posttypes::GALLERY_POSTTYPE;
 ?>
 									<input type="hidden" name="settings[<?php 
-echo  esc_attr( $_key ) ;
+echo esc_attr( $_key );
 ?>]" value="0"/>
 									<label>
 										<span class="wg-toggle">
 											<input type="checkbox" id="wg-standalone-gallery" name="settings[<?php 
-echo  esc_attr( $_key ) ;
+echo esc_attr( $_key );
 ?>]" value="1" <?php 
 checked( Settings::get_settings( $_key ), '1' );
 ?>/>
@@ -317,12 +317,12 @@ esc_html_e( 'Galleries', 'woowgallery' );
 $_key = 'standalone_' . Posttypes::DYNAMIC_POSTTYPE;
 ?>
 									<input type="hidden" name="settings[<?php 
-echo  esc_attr( $_key ) ;
+echo esc_attr( $_key );
 ?>]" value="0"/>
 									<label>
 										<span class="wg-toggle">
 											<input type="checkbox" id="wg-standalone-dynamic" name="settings[<?php 
-echo  esc_attr( $_key ) ;
+echo esc_attr( $_key );
 ?>]" value="1" <?php 
 checked( Settings::get_settings( $_key ), '1' );
 ?>/>
@@ -339,12 +339,12 @@ esc_html_e( 'Dynamic Galleries', 'woowgallery' );
 $_key = 'standalone_' . Posttypes::ALBUM_POSTTYPE;
 ?>
 									<input type="hidden" name="settings[<?php 
-echo  esc_attr( $_key ) ;
+echo esc_attr( $_key );
 ?>]" value="0"/>
 									<label>
 										<span class="wg-toggle">
 											<input type="checkbox" id="wg-standalone-album" name="settings[<?php 
-echo  esc_attr( $_key ) ;
+echo esc_attr( $_key );
 ?>]" value="1" <?php 
 checked( Settings::get_settings( $_key ), '1' );
 ?>/>
@@ -422,9 +422,9 @@ esc_html_e( 'Gallery Slug Base', 'woowgallery' );
 $_key = 'permalink_base_' . Posttypes::GALLERY_POSTTYPE;
 ?>
 								<input type="text" name="settings[<?php 
-echo  esc_attr( $_key ) ;
+echo esc_attr( $_key );
 ?>]" id="wg-gallery-slug" class="form-control" value="<?php 
-echo  esc_attr( Settings::get_settings( $_key, Posttypes::GALLERY_POSTTYPE ) ) ;
+echo esc_attr( Settings::get_settings( $_key, Posttypes::GALLERY_POSTTYPE ) );
 ?>"/>
 								<?php 
 woowgallery_is_premium_feature();
@@ -446,9 +446,9 @@ esc_html_e( 'Dynamic Gallery Slug Base', 'woowgallery' );
 $_key = 'permalink_base_' . Posttypes::DYNAMIC_POSTTYPE;
 ?>
 								<input type="text" name="settings[<?php 
-echo  esc_attr( $_key ) ;
+echo esc_attr( $_key );
 ?>]" id="wg-dynamic-slug" class="form-control" value="<?php 
-echo  esc_attr( Settings::get_settings( $_key, Posttypes::DYNAMIC_POSTTYPE ) ) ;
+echo esc_attr( Settings::get_settings( $_key, Posttypes::DYNAMIC_POSTTYPE ) );
 ?>"/>
 								<?php 
 woowgallery_is_premium_feature();
@@ -470,9 +470,9 @@ esc_html_e( 'Album Slug Base', 'woowgallery' );
 $_key = 'permalink_base_' . Posttypes::ALBUM_POSTTYPE;
 ?>
 								<input type="text" name="settings[<?php 
-echo  esc_attr( $_key ) ;
+echo esc_attr( $_key );
 ?>]" id="wg-album-slug" class="form-control" value="<?php 
-echo  esc_attr( Settings::get_settings( $_key, Posttypes::ALBUM_POSTTYPE ) ) ;
+echo esc_attr( Settings::get_settings( $_key, Posttypes::ALBUM_POSTTYPE ) );
 ?>"/>
 								<?php 
 woowgallery_is_premium_feature();
@@ -537,11 +537,11 @@ foreach ( $skins as $slug => $skin ) {
     $info = $skin->info;
     ?>
 										<option value="<?php 
-    echo  esc_attr( $slug ) ;
+    echo esc_attr( $slug );
     ?>"<?php 
     selected( $settings['product_gallery_skin'], $slug );
     ?>><?php 
-    echo  esc_html( $info['name'] ) ;
+    echo esc_html( $info['name'] );
     ?></option>
 										<?php 
     foreach ( $skin->model as $preset_name => $preset_data ) {
@@ -551,11 +551,11 @@ foreach ( $skins as $slug => $skin ) {
         $value = $slug . ': ' . $preset_name;
         ?>
 											<option value="<?php 
-        echo  esc_attr( $value ) ;
+        echo esc_attr( $value );
         ?>"<?php 
         selected( $settings['product_gallery_skin'], $value );
         ?>><?php 
-        echo  esc_html( $info['name'] . ': ' . $preset_name ) ;
+        echo esc_html( $info['name'] . ': ' . $preset_name );
         ?></option>
 											<?php 
     }
@@ -603,7 +603,7 @@ esc_html_e( 'Global Custom CSS', 'woowgallery' );
 						<div class="field-wrap">
 							<div class="wrapper" style="width: 800px;">
 								<textarea name="settings[custom_css]" id="wg-custom-css" class="form-control" rows="10" cols="60"><?php 
-echo  esc_textarea( stripslashes( $settings['custom_css'] ) ) ;
+echo esc_textarea( stripslashes( $settings['custom_css'] ) );
 ?></textarea>
 								<?php 
 woowgallery_is_premium_feature();

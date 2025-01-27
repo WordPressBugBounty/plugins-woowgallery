@@ -1,9 +1,9 @@
 === WoowGallery - image gallery / content gallery / ecommerce gallery / social gallery / video gallery / album photo gallery ===
-Contributors: Rattus, WoowDev Team, freemius
+Contributors:
 Tags: best gallery plugin, elementor, gallery, image gallery, photo gallery
 Requires at least: 5.3.0
-Tested up to: 6.2
-Requires PHP: 5.4
+Tested up to: 6.7
+Requires PHP: 7.4
 Stable tag: /trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -164,6 +164,9 @@ Watermarks
 Image Comments
 Image Likes
 More Galery Skins
+
+= 1.2.1 - 27.01 =
+* Freemius SDK update
 
 = 1.2.0 - 05.07 =
 * Fixed: PHP 8 compatibility

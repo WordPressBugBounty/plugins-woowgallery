@@ -8,39 +8,37 @@
  */
 namespace WoowGallery;
 
-use  WoowGallery\Admin\Settings ;
+use WoowGallery\Admin\Settings;
 defined( 'ABSPATH' ) || die( 'No script kiddies please!' );
 /**
  * Class Posttypes
  */
-class Posttypes
-{
-    const  GALLERY_POSTTYPE = 'woowgallery' ;
-    const  ALBUM_POSTTYPE = 'woowgallery-album' ;
-    const  DYNAMIC_POSTTYPE = 'woowgallery-dynamic' ;
+class Posttypes {
+    const GALLERY_POSTTYPE = 'woowgallery';
+
+    const ALBUM_POSTTYPE = 'woowgallery-album';
+
+    const DYNAMIC_POSTTYPE = 'woowgallery-dynamic';
+
     /**
      * Primary class constructor.
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->register_woowgallery_posttype();
         $this->register_woowgallery_dynamic_posttype();
         $this->register_woowgallery_album_posttype();
         do_action( 'register_woowgallery_posttypes' );
-        
         if ( is_admin() ) {
             // Update post type messages.
-            add_filter( 'post_updated_messages', [ $this, 'messages' ] );
-            add_filter( 'custom_menu_order', [ $this, 'custom_menu_order' ] );
+            add_filter( 'post_updated_messages', [$this, 'messages'] );
+            add_filter( 'custom_menu_order', [$this, 'custom_menu_order'] );
         }
-    
     }
-    
+
     /**
      * Register WoowGallery CPT.
      */
-    public function register_woowgallery_posttype()
-    {
+    public function register_woowgallery_posttype() {
         // Build the labels for the post type.
         $labels = [
             'name'                  => __( 'WoowGallery', 'woowgallery' ),
@@ -80,12 +78,12 @@ class Posttypes
             'show_in_nav_menus'   => false,
             'can_export'          => true,
             'supports'            => [
-            'title',
-            'excerpt',
-            'thumbnail',
-            'author',
-            'custom-fields'
-        ],
+                'title',
+                'excerpt',
+                'thumbnail',
+                'author',
+                'custom-fields'
+            ],
             'hierarchical'        => false,
             'public'              => false,
             'has_archive'         => false,
@@ -102,14 +100,13 @@ class Posttypes
         // Register the post type with WordPress.
         register_post_type( self::GALLERY_POSTTYPE, $args );
     }
-    
+
     /**
      * Custom capabilities for WoowGallery CPT.
      *
      * @return array.
      */
-    private function capabilities()
-    {
+    private function capabilities() {
         return [
             'edit_post'              => 'edit_woowgallery_post',
             'read_post'              => 'read_woowgallery_post',
@@ -128,12 +125,11 @@ class Posttypes
             'create_posts'           => 'create_woowgallery_posts',
         ];
     }
-    
+
     /**
      * Register WoowGallery CPT.
      */
-    public function register_woowgallery_dynamic_posttype()
-    {
+    public function register_woowgallery_dynamic_posttype() {
         // Build the labels for the post type.
         $labels = [
             'name'                  => __( 'WoowGallery Dynamic', 'woowgallery' ),
@@ -171,12 +167,12 @@ class Posttypes
             'show_in_nav_menus'   => false,
             'can_export'          => true,
             'supports'            => [
-            'title',
-            'excerpt',
-            'thumbnail',
-            'author',
-            'custom-fields'
-        ],
+                'title',
+                'excerpt',
+                'thumbnail',
+                'author',
+                'custom-fields'
+            ],
             'hierarchical'        => false,
             'public'              => false,
             'has_archive'         => false,
@@ -193,14 +189,13 @@ class Posttypes
         // Register the post type with WordPress.
         register_post_type( self::DYNAMIC_POSTTYPE, $args );
         // "Add New" submenu.
-        add_action( 'admin_menu', [ $this, 'dynamic_new_submenu' ], 11 );
+        add_action( 'admin_menu', [$this, 'dynamic_new_submenu'], 11 );
     }
-    
+
     /**
      * Register WoowGallery Album CPT.
      */
-    public function register_woowgallery_album_posttype()
-    {
+    public function register_woowgallery_album_posttype() {
         // Build the labels for the post type.
         $labels = [
             'name'                  => __( 'WoowGallery Album', 'woowgallery' ),
@@ -240,12 +235,12 @@ class Posttypes
             'show_in_nav_menus'   => false,
             'can_export'          => true,
             'supports'            => [
-            'title',
-            'excerpt',
-            'thumbnail',
-            'author',
-            'custom-fields'
-        ],
+                'title',
+                'excerpt',
+                'thumbnail',
+                'author',
+                'custom-fields'
+            ],
             'hierarchical'        => false,
             'public'              => false,
             'has_archive'         => false,
@@ -262,14 +257,13 @@ class Posttypes
         // Register the post type with WordPress.
         register_post_type( self::ALBUM_POSTTYPE, $args );
         // "Add New" submenu.
-        add_action( 'admin_menu', [ $this, 'album_new_submenu' ], 11 );
+        add_action( 'admin_menu', [$this, 'album_new_submenu'], 11 );
     }
-    
+
     /**
      * Add "Add New Album" submenu.
      */
-    public function dynamic_new_submenu()
-    {
+    public function dynamic_new_submenu() {
         $obj = get_post_type_object( self::DYNAMIC_POSTTYPE );
         add_submenu_page(
             $obj->show_in_menu,
@@ -279,12 +273,11 @@ class Posttypes
             'post-new.php?post_type=' . self::DYNAMIC_POSTTYPE
         );
     }
-    
+
     /**
      * Add "Add New Album" submenu.
      */
-    public function album_new_submenu()
-    {
+    public function album_new_submenu() {
         $obj = get_post_type_object( self::ALBUM_POSTTYPE );
         add_submenu_page(
             $obj->show_in_menu,
@@ -294,7 +287,7 @@ class Posttypes
             'post-new.php?post_type=' . self::ALBUM_POSTTYPE
         );
     }
-    
+
     /**
      * Contextualizes the post updated messages.
      *
@@ -302,9 +295,8 @@ class Posttypes
      *
      * @return array $messages Amended array of post updated messages.
      */
-    public function messages( $messages )
-    {
-        global  $post ;
+    public function messages( $messages ) {
+        global $post;
         $revision = woowgallery_GET( 'revision' );
         // Contextualize the messages for WoowGallery Galleries.
         $woowgallery_messages = [
@@ -325,7 +317,7 @@ class Posttypes
         $messages[self::ALBUM_POSTTYPE] = $woowgallery_messages;
         return $messages;
     }
-    
+
     /**
      * Reorder WoowGallery submenus.
      *
@@ -333,11 +325,10 @@ class Posttypes
      *
      * @return bool
      */
-    public function custom_menu_order( $custom )
-    {
+    public function custom_menu_order( $custom ) {
         // Get submenu key location based on slug.
-        global  $submenu ;
-        if ( empty($submenu['edit.php?post_type=' . self::GALLERY_POSTTYPE]) ) {
+        global $submenu;
+        if ( empty( $submenu['edit.php?post_type=' . self::GALLERY_POSTTYPE] ) ) {
             return $custom;
         }
         $wg_submenu = $submenu['edit.php?post_type=' . self::GALLERY_POSTTYPE];
@@ -345,7 +336,6 @@ class Posttypes
         $wg_menu_last = [];
         foreach ( $wg_submenu as $details ) {
             $url = (array) explode( '?', $details[2], 2 );
-            
             if ( 'edit.php' === $url[0] ) {
                 $details[0] = '<span style="margin-right: 10px;">' . $details[0] . '</span></a></li>';
                 $details[0] .= '<li style="position:absolute; right:0; transform: translateY(-100%);" class="wg-cpt-add-new"><a style="padding-left:5px; padding-right:3px;" href="post-new.php?' . $url[1] . '" title="' . esc_attr__( 'Add New', 'woowgallery' ) . '"><span style="transform: translateY(2px);" class="dashicons dashicons-plus"></span>';
@@ -353,7 +343,6 @@ class Posttypes
             } elseif ( 'post-new.php' !== $url[0] ) {
                 $wg_menu_last[] = $details;
             }
-        
         }
         $wg_menu_order['last'] = $wg_menu_last;
         $wg_menu_order = call_user_func_array( 'array_merge', array_values( $wg_menu_order ) );
@@ -361,7 +350,7 @@ class Posttypes
         // Return the new submenu order.
         return $custom;
     }
-    
+
     /**
      * Filter post type arguments.
      *
@@ -370,8 +359,7 @@ class Posttypes
      *
      * @return array
      */
-    public function standalone( $args, $posttype )
-    {
+    public function standalone( $args, $posttype ) {
         return $args;
     }
 

@@ -6,7 +6,7 @@
  * Description: WoowGallery is the fastest, easiest to use WordPress multifunctional image gallery plugin. Create Featured Posts Gallery and Dynamic Content Gallery with a few click.
  * Author:      Rattus
  * Author URI:  https://profiles.wordpress.org/pasyuk/
- * Version:     1.2.0
+ * Version:     1.2.1
  * Text Domain: woowgallery
  * Licence: GPLv2 or later
  *
@@ -26,21 +26,19 @@
  * @package         woowgallery
  */
 defined( 'ABSPATH' ) || die( 'No script kiddies please!' );
-
 if ( function_exists( 'woow_fs' ) ) {
     woow_fs()->set_basename( false, __FILE__ );
 } else {
     /**
      * WoowGallery Constants.
      */
-    define( 'WOOWGALLERY_VERSION', '1.2.0' );
+    define( 'WOOWGALLERY_VERSION', '1.2.1' );
     define( 'WOOWGALLERY_SLUG', 'woowgallery' );
     define( 'WOOWGALLERY_FILE', __FILE__ );
     define( 'WOOWGALLERY_PATH', __DIR__ );
     define( 'WOOWGALLERY_URL', plugin_dir_url( __FILE__ ) );
     define( 'WOOWGALLERY_DIRNAME', basename( WOOWGALLERY_PATH ) );
     // DO NOT REMOVE THIS IF, IT IS ESSENTIAL FOR THE `function_exists` CALL ABOVE TO PROPERLY WORK.
-    
     if ( !function_exists( 'woow_fs' ) ) {
         /**
          * Create a helper function for easy SDK access.
@@ -48,10 +46,8 @@ if ( function_exists( 'woow_fs' ) ) {
          * @return Freemius
          * @noinspection PhpDocMissingThrowsInspection
          */
-        function woow_fs()
-        {
-            global  $woow_fs ;
-            
+        function woow_fs() {
+            global $woow_fs;
             if ( !isset( $woow_fs ) ) {
                 // Include Freemius SDK.
                 require_once WOOWGALLERY_PATH . '/freemius/start.php';
@@ -64,23 +60,22 @@ if ( function_exists( 'woow_fs' ) ) {
                     'has_addons'      => false,
                     'has_paid_plans'  => true,
                     'trial'           => [
-                    'days'               => 7,
-                    'is_require_payment' => true,
-                ],
+                        'days'               => 7,
+                        'is_require_payment' => true,
+                    ],
                     'has_affiliation' => 'selected',
                     'menu'            => [
-                    'slug'   => 'woowgallery-settings',
-                    'parent' => [
-                    'slug' => 'edit.php?post_type=woowgallery',
-                ],
-                ],
+                        'slug'   => 'woowgallery-settings',
+                        'parent' => [
+                            'slug' => 'edit.php?post_type=woowgallery',
+                        ],
+                    ],
                     'is_live'         => true,
                 ] );
             }
-            
             return $woow_fs;
         }
-        
+
         // Init Freemius.
         woow_fs();
         // Signal that SDK was initiated.
@@ -92,6 +87,5 @@ if ( function_exists( 'woow_fs' ) ) {
             return WOOWGALLERY_PATH . '/assets/images/woowgallery-logo.png';
         } );
     }
-    
     require_once WOOWGALLERY_PATH . '/class-woowgallery.php';
 }

@@ -337,7 +337,7 @@ if ( ! function_exists( 'woowgallery_full_attachment_data' ) ) {
 			if ( ! function_exists( 'wp_read_image_metadata' ) ) {
 				include_once ABSPATH . 'wp-admin/includes/image.php';
 			}
-			$attachment['meta'] = wp_read_image_metadata( $attached_file );
+			$attachment['meta'] = @wp_read_image_metadata( $attached_file );
 			unset( $attachment['meta']['title'], $attachment['meta']['caption'], $attachment['meta']['orientation'] );
 			$attachment['meta'] = array_filter(
 				$attachment['meta'],

@@ -8,31 +8,32 @@
  */
 namespace WoowGallery;
 
-use  WoowGallery\Admin\Settings ;
+use WoowGallery\Admin\Settings;
 defined( 'ABSPATH' ) || die( 'No script kiddies please!' );
 /**
  * Class Taxonomies
  */
-class Taxonomies
-{
-    const  GALLERY_TAXONOMY_NAME = 'media_woowgallery' ;
-    const  MEDIA_TAG_TAXONOMY_NAME = 'media_tag' ;
-    const  STANDALONE_CATEGORY_TAXONOMY_NAME = 'woowgallery_category' ;
-    const  STANDALONE_TAG_TAXONOMY_NAME = 'woowgallery_tag' ;
+class Taxonomies {
+    const GALLERY_TAXONOMY_NAME = 'media_woowgallery';
+
+    const MEDIA_TAG_TAXONOMY_NAME = 'media_tag';
+
+    const STANDALONE_CATEGORY_TAXONOMY_NAME = 'woowgallery_category';
+
+    const STANDALONE_TAG_TAXONOMY_NAME = 'woowgallery_tag';
+
     /**
      * Primary class constructor.
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->register_woowgallery_taxonomy();
         $this->register_media_tag_taxonomy();
     }
-    
+
     /**
      * Register WoowGallery Taxonomy.
      */
-    public function register_woowgallery_taxonomy()
-    {
+    public function register_woowgallery_taxonomy() {
         // Build the labels for the taxonomy.
         $labels = [
             'name'          => __( 'WoowGallery', 'woowgallery' ),
@@ -54,23 +55,22 @@ class Taxonomies
             'rewrite'               => false,
             'update_count_callback' => '_update_generic_term_count',
             'capabilities'          => [
-            'manage_terms' => 'edit_woowgallery_galleries',
-            'edit_terms'   => 'edit_woowgallery_galleries',
-            'assign_terms' => 'edit_woowgallery_galleries',
-            'delete_terms' => 'delete_woowgallery_galleries',
-        ],
+                'manage_terms' => 'edit_woowgallery_galleries',
+                'edit_terms'   => 'edit_woowgallery_galleries',
+                'assign_terms' => 'edit_woowgallery_galleries',
+                'delete_terms' => 'delete_woowgallery_galleries',
+            ],
         ];
         // Filter arguments.
         $args = apply_filters( 'woowgallery_taxonomy_args', $args, self::GALLERY_TAXONOMY_NAME );
         // Register the post type with WordPress.
-        register_taxonomy( self::GALLERY_TAXONOMY_NAME, [ 'attachment' ], $args );
+        register_taxonomy( self::GALLERY_TAXONOMY_NAME, ['attachment'], $args );
     }
-    
+
     /**
      * Register WoowGallery Media Tag Taxonomy.
      */
-    public function register_media_tag_taxonomy()
-    {
+    public function register_media_tag_taxonomy() {
         if ( taxonomy_exists( self::MEDIA_TAG_TAXONOMY_NAME ) ) {
             return;
         }
@@ -92,21 +92,19 @@ class Taxonomies
         // Filter arguments.
         $args = apply_filters( 'woowgallery_taxonomy_args', $args, self::MEDIA_TAG_TAXONOMY_NAME );
         // Register the post type with WordPress.
-        register_taxonomy( self::MEDIA_TAG_TAXONOMY_NAME, [ 'attachment' ], $args );
+        register_taxonomy( self::MEDIA_TAG_TAXONOMY_NAME, ['attachment'], $args );
     }
-    
+
     /**
      * Register WoowGallery Standalone Category taxonomy.
      */
-    public function register_standalone_category_taxonomy()
-    {
+    public function register_standalone_category_taxonomy() {
     }
-    
+
     /**
      * Register WoowGallery Standalone Tag taxonomy.
      */
-    public function register_standalone_tag_taxonomy()
-    {
+    public function register_standalone_tag_taxonomy() {
     }
 
 }

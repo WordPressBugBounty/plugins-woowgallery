@@ -12,24 +12,21 @@ defined( 'ABSPATH' ) || die( 'No script kiddies please!' );
 /**
  * Class Admin
  */
-class Assets
-{
+class Assets {
     /**
      * Primary class constructor.
      */
-    public function __construct()
-    {
+    public function __construct() {
         // Register assets.
         $this->global_scripts();
-        add_action( 'admin_enqueue_scripts', [ $this, 'admin_scripts' ], 2 );
-        add_action( 'admin_enqueue_scripts', [ $this, 'admin_scripts_l10n' ], 999 );
+        add_action( 'admin_enqueue_scripts', [$this, 'admin_scripts'], 2 );
+        add_action( 'admin_enqueue_scripts', [$this, 'admin_scripts_l10n'], 999 );
     }
-    
+
     /**
      * Register global scripts.
      */
-    public function global_scripts()
-    {
+    public function global_scripts() {
         $suffix = ( SCRIPT_DEBUG ? '' : '.min' );
         // Vendor scripts.
         wp_register_script(
@@ -77,7 +74,7 @@ class Assets
         wp_register_script(
             WOOWGALLERY_SLUG . '-elementor',
             plugins_url( "assets/js/elementor{$suffix}.js", WOOWGALLERY_FILE ),
-            [ 'jquery' ],
+            ['jquery'],
             WOOWGALLERY_VERSION,
             true
         );
@@ -108,36 +105,34 @@ class Assets
         $script_localize['i'] .= 'v' . WOOWGALLERY_VERSION;
         wp_localize_script( WOOWGALLERY_SLUG . '-script', 'WoowGallery', $script_localize );
     }
-    
+
     /**
      * List of Lightboxes.
      */
-    public static function lightboxes()
-    {
+    public static function lightboxes() {
         $lightboxes = [
             'woowlightbox' => [
-            'name'         => __( 'WoowLightbox', 'woowgallery' ),
-            'slug'         => 'woowlightbox',
-            'version'      => WOOWGALLERY_VERSION,
-            'style'        => '',
-            'script'       => plugins_url( 'assets/js/lightbox/woowlightbox.js', WOOWGALLERY_FILE ),
-            'dependencies' => [],
-        ],
+                'name'         => __( 'WoowLightbox', 'woowgallery' ),
+                'slug'         => 'woowlightbox',
+                'version'      => WOOWGALLERY_VERSION,
+                'style'        => '',
+                'script'       => plugins_url( 'assets/js/lightbox/woowlightbox.js', WOOWGALLERY_FILE ),
+                'dependencies' => [],
+            ],
         ];
         return apply_filters( 'woowgallery_lightboxes_list', $lightboxes );
     }
-    
+
     /**
      * Register and Loads styles / scripts for all WOOWGALLERY-based Administration Screens.
      */
-    public function admin_scripts()
-    {
+    public function admin_scripts() {
         $suffix = ( SCRIPT_DEBUG ? '' : '.min' );
         // Vendor scripts.
         wp_register_script(
             'portal-vue',
             plugins_url( "assets/vendor/portal-vue.umd{$suffix}.js", WOOWGALLERY_FILE ),
-            [ 'vuejs' ],
+            ['vuejs'],
             '2.1.5',
             true
         );
@@ -150,7 +145,7 @@ class Assets
         wp_register_script(
             'vue-toasted',
             plugins_url( "assets/vendor/vue-toasted/vue-toasted{$suffix}.js", WOOWGALLERY_FILE ),
-            [ 'vuejs' ],
+            ['vuejs'],
             '1.1.24',
             true
         );
@@ -163,7 +158,7 @@ class Assets
         wp_register_script(
             'vue-multiselect',
             plugins_url( 'assets/vendor/vue-multiselect/vue-multiselect.min.js', WOOWGALLERY_FILE ),
-            [ 'vuejs' ],
+            ['vuejs'],
             '2.1.6',
             true
         );
@@ -197,7 +192,7 @@ class Assets
         wp_register_script(
             'spectrum',
             plugins_url( "assets/vendor/spectrum/spectrum{$suffix}.js", WOOWGALLERY_FILE ),
-            [ 'jquery' ],
+            ['jquery'],
             '1.8.0',
             true
         );
@@ -218,11 +213,11 @@ class Assets
             WOOWGALLERY_SLUG . '-admin-script',
             plugins_url( 'assets/js/admin.min.js', WOOWGALLERY_FILE ),
             [
-            'jquery',
-            'underscore',
-            'clipboard',
-            'wp-i18n'
-        ],
+                'jquery',
+                'underscore',
+                'clipboard',
+                'wp-i18n'
+            ],
             WOOWGALLERY_VERSION,
             true
         );
@@ -236,20 +231,20 @@ class Assets
         wp_register_style(
             WOOWGALLERY_SLUG . '-settings-style',
             plugins_url( 'assets/css/settings.css', WOOWGALLERY_FILE ),
-            [ 'vue-toasted', 'spectrum', WOOWGALLERY_SLUG . '-freemius-style' ],
+            ['vue-toasted', 'spectrum', WOOWGALLERY_SLUG . '-freemius-style'],
             WOOWGALLERY_VERSION
         );
         wp_register_script(
             WOOWGALLERY_SLUG . '-settings-script',
             plugins_url( 'assets/js/settings.min.js', WOOWGALLERY_FILE ),
             [
-            WOOWGALLERY_SLUG . '-admin-script',
-            'vuejs',
-            'vue-toasted',
-            'backbone',
-            'filtrex',
-            'spectrum'
-        ],
+                WOOWGALLERY_SLUG . '-admin-script',
+                'vuejs',
+                'vue-toasted',
+                'backbone',
+                'filtrex',
+                'spectrum'
+            ],
             WOOWGALLERY_VERSION,
             true
         );
@@ -264,7 +259,7 @@ class Assets
             WOOWGALLERY_SLUG . '-editor-modal-script',
             //plugins_url( 'assets/js/editor-modal.min.js', WOOWGALLERY_FILE ),
             plugins_url( 'assets/js/editor-modal.js', WOOWGALLERY_FILE ),
-            [ WOOWGALLERY_SLUG . '-admin-script', 'vuejs', 'backbone' ],
+            [WOOWGALLERY_SLUG . '-admin-script', 'vuejs', 'backbone'],
             WOOWGALLERY_VERSION,
             true
         );
@@ -272,20 +267,20 @@ class Assets
         wp_register_style(
             WOOWGALLERY_SLUG . '-edit-woowgallery-style',
             plugins_url( 'assets/css/edit-woowgallery.css', WOOWGALLERY_FILE ),
-            [ 'vue-toasted', 'spectrum' ],
+            ['vue-toasted', 'spectrum'],
             WOOWGALLERY_VERSION
         );
         wp_register_script(
             WOOWGALLERY_SLUG . '-edit-lightbox-script',
             plugins_url( 'assets/js/edit-lightbox.min.js', WOOWGALLERY_FILE ),
             [
-            WOOWGALLERY_SLUG . '-admin-script',
-            'jquery',
-            'vuejs',
-            'backbone',
-            'filtrex',
-            'spectrum'
-        ],
+                WOOWGALLERY_SLUG . '-admin-script',
+                'jquery',
+                'vuejs',
+                'backbone',
+                'filtrex',
+                'spectrum'
+            ],
             WOOWGALLERY_VERSION,
             true
         );
@@ -293,22 +288,22 @@ class Assets
             WOOWGALLERY_SLUG . '-edit-gallery-script',
             plugins_url( 'assets/js/edit-gallery.min.js', WOOWGALLERY_FILE ),
             [
-            WOOWGALLERY_SLUG . '-admin-script',
-            'wp-api',
-            'jquery',
-            'plupload-handlers',
-            'quicktags',
-            'jquery-ui-sortable',
-            'vuejs',
-            'portal-vue',
-            'vue-toasted',
-            'Sortable',
-            'backbone',
-            'media-views',
-            'media-grid',
-            'filtrex',
-            'spectrum'
-        ],
+                WOOWGALLERY_SLUG . '-admin-script',
+                'wp-api',
+                'jquery',
+                'plupload-handlers',
+                'quicktags',
+                'jquery-ui-sortable',
+                'vuejs',
+                'portal-vue',
+                'vue-toasted',
+                'Sortable',
+                'backbone',
+                'media-views',
+                'media-grid',
+                'filtrex',
+                'spectrum'
+            ],
             WOOWGALLERY_VERSION,
             true
         );
@@ -316,16 +311,16 @@ class Assets
             WOOWGALLERY_SLUG . '-edit-dynamic-gallery-script',
             plugins_url( 'assets/js/edit-dynamic-gallery.min.js', WOOWGALLERY_FILE ),
             [
-            WOOWGALLERY_SLUG . '-admin-script',
-            'wp-api',
-            'jquery',
-            'vuejs',
-            'portal-vue',
-            'vue-toasted',
-            'backbone',
-            'filtrex',
-            'spectrum'
-        ],
+                WOOWGALLERY_SLUG . '-admin-script',
+                'wp-api',
+                'jquery',
+                'vuejs',
+                'portal-vue',
+                'vue-toasted',
+                'backbone',
+                'filtrex',
+                'spectrum'
+            ],
             WOOWGALLERY_VERSION,
             true
         );
@@ -333,35 +328,34 @@ class Assets
             WOOWGALLERY_SLUG . '-edit-album-script',
             plugins_url( 'assets/js/edit-album.min.js', WOOWGALLERY_FILE ),
             [
-            WOOWGALLERY_SLUG . '-admin-script',
-            'wp-api',
-            'jquery',
-            'quicktags',
-            'jquery-ui-sortable',
-            'vuejs',
-            'portal-vue',
-            'vue-toasted',
-            'Sortable',
-            'backbone',
-            'filtrex',
-            'spectrum'
-        ],
+                WOOWGALLERY_SLUG . '-admin-script',
+                'wp-api',
+                'jquery',
+                'quicktags',
+                'jquery-ui-sortable',
+                'vuejs',
+                'portal-vue',
+                'vue-toasted',
+                'Sortable',
+                'backbone',
+                'filtrex',
+                'spectrum'
+            ],
             WOOWGALLERY_VERSION,
             true
         );
     }
-    
+
     /**
      * Global Scripts Localization.
      */
-    public function admin_scripts_l10n()
-    {
+    public function admin_scripts_l10n() {
         $post_types = [];
         $post_types_obj = get_post_types( [
             'public'       => true,
             'show_in_rest' => true,
         ], 'objects', 'and' );
-        $wg_posttypes = [ Posttypes::ALBUM_POSTTYPE, Posttypes::GALLERY_POSTTYPE, Posttypes::DYNAMIC_POSTTYPE ];
+        $wg_posttypes = [Posttypes::ALBUM_POSTTYPE, Posttypes::GALLERY_POSTTYPE, Posttypes::DYNAMIC_POSTTYPE];
         foreach ( $wg_posttypes as $posttype ) {
             $_post_type = get_post_type_object( $posttype );
             if ( !$_post_type ) {
