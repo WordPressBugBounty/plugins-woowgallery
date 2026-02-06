@@ -4,11 +4,11 @@
  * Plugin Name: WoowGallery
  * Plugin URI:  http://woowgallery.com/
  * Description: WoowGallery is the fastest, easiest to use WordPress multifunctional image gallery plugin. Create Featured Posts Gallery and Dynamic Content Gallery with a few click.
- * Author:      Rattus
+ * Author:      Serhii Pasyuk
  * Author URI:  https://profiles.wordpress.org/pasyuk/
- * Version:     1.2.1
+ * Version:     1.2.4
  * Text Domain: woowgallery
- * Licence: GPLv2 or later
+ * License: GPLv2 or later
  *
  * WoowGallery is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ if ( function_exists( 'woow_fs' ) ) {
     /**
      * WoowGallery Constants.
      */
-    define( 'WOOWGALLERY_VERSION', '1.2.1' );
+    define( 'WOOWGALLERY_VERSION', '1.2.4' );
     define( 'WOOWGALLERY_SLUG', 'woowgallery' );
     define( 'WOOWGALLERY_FILE', __FILE__ );
     define( 'WOOWGALLERY_PATH', __DIR__ );
@@ -50,27 +50,28 @@ if ( function_exists( 'woow_fs' ) ) {
             global $woow_fs;
             if ( !isset( $woow_fs ) ) {
                 // Include Freemius SDK.
-                require_once WOOWGALLERY_PATH . '/freemius/start.php';
+                require_once dirname( __FILE__ ) . '/vendor/freemius/start.php';
                 $woow_fs = fs_dynamic_init( [
-                    'id'              => '6026',
-                    'slug'            => 'woowgallery',
-                    'type'            => 'plugin',
-                    'public_key'      => 'pk_cc0fe81f5fd36b175cf9234630313',
-                    'is_premium'      => false,
-                    'has_addons'      => false,
-                    'has_paid_plans'  => true,
-                    'trial'           => [
+                    'id'               => '6026',
+                    'slug'             => 'woowgallery',
+                    'type'             => 'plugin',
+                    'public_key'       => 'pk_cc0fe81f5fd36b175cf9234630313',
+                    'is_premium'       => false,
+                    'has_addons'       => false,
+                    'has_paid_plans'   => true,
+                    'is_org_compliant' => true,
+                    'trial'            => [
                         'days'               => 7,
                         'is_require_payment' => true,
                     ],
-                    'has_affiliation' => 'selected',
-                    'menu'            => [
+                    'has_affiliation'  => 'all',
+                    'menu'             => [
                         'slug'   => 'woowgallery-settings',
                         'parent' => [
                             'slug' => 'edit.php?post_type=woowgallery',
                         ],
                     ],
-                    'is_live'         => true,
+                    'is_live'          => true,
                 ] );
             }
             return $woow_fs;
@@ -80,6 +81,8 @@ if ( function_exists( 'woow_fs' ) ) {
         woow_fs();
         // Signal that SDK was initiated.
         do_action( 'woow_fs_loaded' );
+        // Hook uninstall cleanup to Freemius after_uninstall action.
+        woow_fs()->add_action( 'after_uninstall', 'woowgallery_uninstall_hook' );
         /**
          * Custom product icon
          */

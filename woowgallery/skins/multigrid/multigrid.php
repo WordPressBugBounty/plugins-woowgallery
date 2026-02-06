@@ -16,6 +16,16 @@ if ( !class_exists( 'WoowGallery\\Skins\\MultiGrid' ) ) {
  * Class MultiGrid
  */
 class MultiGrid {
+    public $slug;
+
+    public $info;
+
+    public $model;
+
+    public $schema;
+
+    public $preset_name;
+
     const NAME = 'MultiGrid';
 
     const SLUG = 'multigrid';
@@ -59,6 +69,7 @@ class MultiGrid {
      * @return string
      */
     public static function render( $gallery ) {
+        /* translators: %s: URL to WoowGallery Premium upgrade page */
         return '<div class="woowgallery-multigrid">' . esc_html( sprintf( __( '<a href="%s">WoowGallery Premium</a> required.', 'woowgallery' ), 'https://woowgallery.com/' ) ) . '</div>';
     }
 

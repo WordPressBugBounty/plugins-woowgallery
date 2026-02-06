@@ -265,6 +265,9 @@ class Posttypes {
      */
     public function dynamic_new_submenu() {
         $obj = get_post_type_object( self::DYNAMIC_POSTTYPE );
+        if ( !$obj ) {
+            return;
+        }
         add_submenu_page(
             $obj->show_in_menu,
             $obj->labels->add_new_item,
@@ -279,6 +282,9 @@ class Posttypes {
      */
     public function album_new_submenu() {
         $obj = get_post_type_object( self::ALBUM_POSTTYPE );
+        if ( !$obj ) {
+            return;
+        }
         add_submenu_page(
             $obj->show_in_menu,
             $obj->labels->add_new_item,
@@ -309,7 +315,7 @@ class Posttypes {
             6  => __( 'Gallery published.', 'woowgallery' ),
             7  => __( 'Gallery saved.', 'woowgallery' ),
             8  => __( 'Gallery submitted.', 'woowgallery' ),
-            9  => sprintf( __( 'WoowGallery scheduled for: <strong>%1$s</strong>.', 'woowgallery' ), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ) ),
+            9  => sprintf( __( 'WoowGallery scheduled for: <strong>%1$s</strong>.', 'woowgallery' ), date_i18n( __( 'M j, Y @ G:i', 'woowgallery' ), strtotime( $post->post_date ) ) ),
             10 => __( 'Gallery draft updated.', 'woowgallery' ),
         ];
         $messages[self::GALLERY_POSTTYPE] = $woowgallery_messages;

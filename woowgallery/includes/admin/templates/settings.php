@@ -6,6 +6,7 @@
  * @package woowgallery
  * @author  Sergey Pasyuk
  */
+defined( 'ABSPATH' ) || die( 'No script kiddies please!' );
 use WoowGallery\Admin\Settings;
 use WoowGallery\Assets;
 use WoowGallery\Lightbox;
@@ -50,22 +51,8 @@ esc_html_e( 'Standalone', 'woowgallery' );
 ?></span>
 					</a>
 				</li>
-				<li class="woowgallery-tab-nav-woocommerce">
-					<a href="#woowgallery-tab-woocommerce">
-						<span class="dashicons dashicons-marker"></span>
-						<span class="tab-label"><?php 
-esc_html_e( 'WooCommerce', 'woowgallery' );
-?></span>
-					</a>
-				</li>
-				<li class="woowgallery-tab-nav-lightbox">
-					<a href="#woowgallery-tab-lightbox">
-						<span class="dashicons dashicons-editor-expand"></span>
-						<span class="tab-label"><?php 
-esc_html_e( 'Lightbox', 'woowgallery' );
-?></span>
-					</a>
-				</li>
+				<?php 
+?>
 				<li class="woowgallery-tab-nav-misc">
 					<a href="#woowgallery-tab-misc">
 						<span class="dashicons dashicons-admin-tools"></span>
@@ -93,7 +80,7 @@ esc_html_e( 'Max Width', 'woowgallery' );
 									<div class="wrapper">
 										<input id="wg-thumb-width" name="settings[thumb_width]" type="number" min="80" class="form-control" value="<?php 
 echo (int) $settings['thumb_width'];
-?>"/>
+?>" />
 									</div>
 								</div>
 								<div class="inline-field">
@@ -103,7 +90,7 @@ esc_html_e( 'Max Height', 'woowgallery' );
 									<div class="wrapper">
 										<input id="wg-thumb-height" name="settings[thumb_height]" type="number" min="80" class="form-control" value="<?php 
 echo (int) $settings['thumb_height'];
-?>"/>
+?>" />
 									</div>
 								</div>
 								<div class="inline-field">
@@ -113,7 +100,7 @@ esc_html_e( 'Quality', 'woowgallery' );
 									<div class="wrapper">
 										<input id="wg-thumb-quality" name="settings[thumb_quality]" type="number" min="1" max="100" class="form-control" value="<?php 
 echo (int) $settings['thumb_quality'];
-?>"/>
+?>" />
 									</div>
 								</div>
 							</div>
@@ -141,7 +128,7 @@ esc_html_e( 'Max Width', 'woowgallery' );
 									<div class="wrapper">
 										<input id="wg-image-width" name="settings[image_width]" type="number" min="400" class="form-control" value="<?php 
 echo (int) $settings['image_width'];
-?>"/>
+?>" />
 									</div>
 								</div>
 								<div class="inline-field">
@@ -151,7 +138,7 @@ esc_html_e( 'Max Height', 'woowgallery' );
 									<div class="wrapper">
 										<input id="wg-image-height" name="settings[image_height]" type="number" min="400" class="form-control" value="<?php 
 echo (int) $settings['image_height'];
-?>"/>
+?>" />
 									</div>
 								</div>
 								<div class="inline-field">
@@ -161,7 +148,7 @@ esc_html_e( 'Quality', 'woowgallery' );
 									<div class="wrapper">
 										<input id="wg-image-quality" name="settings[image_quality]" type="number" min="1" max="100" class="form-control" value="<?php 
 echo (int) $settings['image_quality'];
-?>"/>
+?>" />
 									</div>
 								</div>
 							</div>
@@ -212,19 +199,19 @@ esc_html_e( 'Add New Media', 'woowgallery' );
 ?></label>
 						<div class="field-wrap">
 							<div class="wrapper">
-								<input type="hidden" name="settings[selection_prepend]" value="0"/>
+								<input type="hidden" name="settings[selection_prepend]" value="0" />
 								<label id="wg-selection-prepend" class="wg-add-media-toggle">
 									<input type="checkbox" name="settings[selection_prepend]" value="1" <?php 
 checked( $settings['selection_prepend'], '1' );
 ?> />
 									<span class="wg-checked prepend-mode"><img src="<?php 
 echo esc_url( plugins_url( 'assets/images/add-items.svg', WOOWGALLERY_FILE ) );
-?>" width="32" height="32" alt="prepend icon"/> <?php 
+?>" width="32" height="32" alt="prepend icon" /> <?php 
 esc_html_e( 'Before Existing Media', 'woowgallery' );
 ?></span>
 									<span class="wg-unchecked append-mode"><img src="<?php 
 echo esc_url( plugins_url( 'assets/images/add-items.svg', WOOWGALLERY_FILE ) );
-?>" width="32" height="32" alt="append icon"/> <?php 
+?>" width="32" height="32" alt="append icon" /> <?php 
 esc_html_e( 'After Existing Media', 'woowgallery' );
 ?></span>
 								</label>
@@ -296,14 +283,14 @@ $_key = 'standalone_' . Posttypes::GALLERY_POSTTYPE;
 ?>
 									<input type="hidden" name="settings[<?php 
 echo esc_attr( $_key );
-?>]" value="0"/>
+?>]" value="0" />
 									<label>
 										<span class="wg-toggle">
 											<input type="checkbox" id="wg-standalone-gallery" name="settings[<?php 
 echo esc_attr( $_key );
 ?>]" value="1" <?php 
 checked( Settings::get_settings( $_key ), '1' );
-?>/>
+?> />
 											<span class="wg-toggle__track"></span>
 											<span class="wg-toggle__thumb"></span>
 										</span>
@@ -318,14 +305,14 @@ $_key = 'standalone_' . Posttypes::DYNAMIC_POSTTYPE;
 ?>
 									<input type="hidden" name="settings[<?php 
 echo esc_attr( $_key );
-?>]" value="0"/>
+?>]" value="0" />
 									<label>
 										<span class="wg-toggle">
 											<input type="checkbox" id="wg-standalone-dynamic" name="settings[<?php 
 echo esc_attr( $_key );
 ?>]" value="1" <?php 
 checked( Settings::get_settings( $_key ), '1' );
-?>/>
+?> />
 											<span class="wg-toggle__track"></span>
 											<span class="wg-toggle__thumb"></span>
 										</span>
@@ -340,14 +327,14 @@ $_key = 'standalone_' . Posttypes::ALBUM_POSTTYPE;
 ?>
 									<input type="hidden" name="settings[<?php 
 echo esc_attr( $_key );
-?>]" value="0"/>
+?>]" value="0" />
 									<label>
 										<span class="wg-toggle">
 											<input type="checkbox" id="wg-standalone-album" name="settings[<?php 
 echo esc_attr( $_key );
 ?>]" value="1" <?php 
 checked( Settings::get_settings( $_key ), '1' );
-?>/>
+?> />
 											<span class="wg-toggle__track"></span>
 											<span class="wg-toggle__thumb"></span>
 										</span>
@@ -357,7 +344,6 @@ esc_html_e( 'Albums', 'woowgallery' );
 									</label>
 								</p>
 								<?php 
-woowgallery_is_premium_feature();
 ?>
 							</div>
 						</div>
@@ -373,12 +359,12 @@ esc_html_e( 'Taxonomies', 'woowgallery' );
 						<div class="field-wrap">
 							<div class="wrapper">
 								<p>
-									<input type="hidden" name="settings[woowgallery_categories]" value="0"/>
+									<input type="hidden" name="settings[woowgallery_categories]" value="0" />
 									<label>
 										<span class="wg-toggle">
 											<input type="checkbox" id="wg-categories" name="settings[woowgallery_categories]" value="1" <?php 
 checked( Settings::get_settings( 'woowgallery_categories' ), '1' );
-?>/>
+?> />
 											<span class="wg-toggle__track"></span>
 											<span class="wg-toggle__thumb"></span>
 										</span>
@@ -388,12 +374,12 @@ esc_html_e( 'Categories', 'woowgallery' );
 									</label>
 								</p>
 								<p>
-									<input type="hidden" name="settings[woowgallery_tags]" value="0"/>
+									<input type="hidden" name="settings[woowgallery_tags]" value="0" />
 									<label>
 										<span class="wg-toggle">
 											<input type="checkbox" id="wg-tags" name="settings[woowgallery_tags]" value="1" <?php 
 checked( Settings::get_settings( 'woowgallery_tags' ), '1' );
-?>/>
+?> />
 											<span class="wg-toggle__track"></span>
 											<span class="wg-toggle__thumb"></span>
 										</span>
@@ -403,7 +389,6 @@ esc_html_e( 'Tags', 'woowgallery' );
 									</label>
 								</p>
 								<?php 
-woowgallery_is_premium_feature();
 ?>
 							</div>
 						</div>
@@ -425,9 +410,8 @@ $_key = 'permalink_base_' . Posttypes::GALLERY_POSTTYPE;
 echo esc_attr( $_key );
 ?>]" id="wg-gallery-slug" class="form-control" value="<?php 
 echo esc_attr( Settings::get_settings( $_key, Posttypes::GALLERY_POSTTYPE ) );
-?>"/>
+?>" />
 								<?php 
-woowgallery_is_premium_feature();
 ?>
 							</div>
 						</div>
@@ -449,9 +433,8 @@ $_key = 'permalink_base_' . Posttypes::DYNAMIC_POSTTYPE;
 echo esc_attr( $_key );
 ?>]" id="wg-dynamic-slug" class="form-control" value="<?php 
 echo esc_attr( Settings::get_settings( $_key, Posttypes::DYNAMIC_POSTTYPE ) );
-?>"/>
+?>" />
 								<?php 
-woowgallery_is_premium_feature();
 ?>
 							</div>
 						</div>
@@ -473,9 +456,8 @@ $_key = 'permalink_base_' . Posttypes::ALBUM_POSTTYPE;
 echo esc_attr( $_key );
 ?>]" id="wg-album-slug" class="form-control" value="<?php 
 echo esc_attr( Settings::get_settings( $_key, Posttypes::ALBUM_POSTTYPE ) );
-?>"/>
+?>" />
 								<?php 
-woowgallery_is_premium_feature();
 ?>
 							</div>
 						</div>
@@ -485,115 +467,8 @@ esc_html_e( 'The slug to prefix all WoowGallery Albums.', 'woowgallery' );
 					</div>
 				</div>
 
-				<div id="woowgallery-tab-woocommerce" class="woowgallery-tab inside">
-					<div>
-						<h3><?php 
-esc_html_e( 'WoowGallery skin for Product gallery', 'woowgallery' );
-?></h3>
-						<p><?php 
-esc_html_e( 'Note: WooCommerce plugin required.', 'woowgallery' );
-?></p>
-					</div>
-					<div class="form-group field-checkbox">
-						<label for="wg-product_gallery"><?php 
-esc_html_e( 'Product Gallery', 'woowgallery' );
-?></label>
-						<div class="field-wrap">
-							<div class="wrapper">
-								<input type="hidden" name="settings[product_gallery]" value="0"/>
-								<label>
-									<span class="wg-toggle">
-										<input type="checkbox" id="wg-product_gallery" name="settings[product_gallery]" value="1" <?php 
-checked( Settings::get_settings( 'product_gallery' ), '1' );
-?>/>
-										<span class="wg-toggle__track"></span>
-										<span class="wg-toggle__thumb"></span>
-									</span>
-									<?php 
-esc_html_e( 'Enable', 'woowgallery' );
+				<?php 
 ?>
-								</label>
-							</div>
-						</div>
-						<div class="hint"><?php 
-esc_html_e( 'Enable or Disable replacing default product gallery template with WoowGallery skin.', 'woowgallery' );
-?></div>
-					</div>
-					<div class="form-group field-input">
-						<label for="woowgallery-product-gallery-skin"><?php 
-esc_html_e( 'Product Gallery Skin/Preset', 'woowgallery' );
-?></label>
-						<div class="field-wrap">
-							<div class="wrapper">
-								<select name="settings[product_gallery_skin]" id="woowgallery-product-gallery-skin" class="form-control skins-presets-list">
-									<!-- <option value=""<?php 
-selected( $settings['product_gallery_skin'], '' );
-?>><?php 
-esc_html_e( 'None', 'woowgallery' );
-?></option> -->
-									<?php 
-// Iterate through the available skins, outputting them in a list.
-foreach ( $skins as $slug => $skin ) {
-    $info = $skin->info;
-    ?>
-										<option value="<?php 
-    echo esc_attr( $slug );
-    ?>"<?php 
-    selected( $settings['product_gallery_skin'], $slug );
-    ?>><?php 
-    echo esc_html( $info['name'] );
-    ?></option>
-										<?php 
-    foreach ( $skin->model as $preset_name => $preset_data ) {
-        if ( 'default' === $preset_name ) {
-            continue;
-        }
-        $value = $slug . ': ' . $preset_name;
-        ?>
-											<option value="<?php 
-        echo esc_attr( $value );
-        ?>"<?php 
-        selected( $settings['product_gallery_skin'], $value );
-        ?>><?php 
-        echo esc_html( $info['name'] . ': ' . $preset_name );
-        ?></option>
-											<?php 
-    }
-}
-?>
-								</select>
-							</div>
-						</div>
-						<div class="hint">
-							<?php 
-esc_html_e( 'Select default skin for your WooCommerce product galleries.', 'woowgallery' );
-?><br />
-							<?php 
-esc_html_e( 'Note: Creating skins presets and changing default settings for skins available only in WoowGallery Premium. You can config skins/presets below.', 'woowgallery' );
-?>
-						</div>
-					</div>
-				</div>
-
-				<div id="woowgallery-tab-lightbox" class="woowgallery-tab inside">
-					<?php 
-?>
-						<h3><?php 
-esc_html_e( 'Default Settings for Lightbox', 'woowgallery' );
-?></h3>
-						<p><?php 
-esc_html_e( 'WoowGallery Premium required to set default settings for lightboxes', 'woowgallery' );
-?></p>
-						<div class="form-group">
-							<div style="position: relative; height: 100px; width: 100%; margin: 10px 0;">
-								<?php 
-woowgallery_is_premium_feature();
-?>
-							</div>
-						</div>
-					<?php 
-?>
-				</div>
 
 				<div id="woowgallery-tab-misc" class="woowgallery-tab inside">
 					<div class="form-group field-textarea">
@@ -606,7 +481,6 @@ esc_html_e( 'Global Custom CSS', 'woowgallery' );
 echo esc_textarea( stripslashes( $settings['custom_css'] ) );
 ?></textarea>
 								<?php 
-woowgallery_is_premium_feature();
 ?>
 							</div>
 						</div>
@@ -614,7 +488,7 @@ woowgallery_is_premium_feature();
 							<?php 
 esc_html_e( 'These styles will be applied for all WoowGalleries.', 'woowgallery' );
 ?>
-							<br/><code>.woowgallery-wrapper</code> - <?php 
+							<br /><code>.woowgallery-wrapper</code> - <?php 
 esc_html_e( 'you can use this classname for styles you added. It is the main WoowGallery wrapper for any gallery.', 'woowgallery' );
 ?>
 						</div>
@@ -628,7 +502,7 @@ esc_html_e( 'you can use this classname for styles you added. It is the main Woo
 
 			<div class="alignright">
 				<button type="submit" name="woowgallery-settings-reset" class="button button-secondary" data-confirm="<?php 
-esc_attr_e( 'This will reset plugin\'s settings and delete all skins presets.' );
+esc_attr_e( 'This will reset plugin\'s settings and delete all skins presets.', 'woowgallery' );
 ?>"><?php 
 esc_html_e( 'Reset Plugin', 'woowgallery' );
 ?></button>
