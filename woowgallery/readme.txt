@@ -1,10 +1,10 @@
 === WoowGallery ===
 Contributors: pasyuk
 Tags: gallery, elementor, images, photos, album
-Requires at least: 5.4.0
-Tested up to: 6.9
+Requires at least: 5.8
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.2.4
+Stable tag: 1.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,7 +45,7 @@ Social media integrations, and WooCommerce store integration.
 
 = Built-in Feature List =
 
-* **Gutenberg Blocks** for WordPress 5.0+
+* **Gutenberg Blocks** for WordPress 5.8+
 * **Drag & Drop** Photo Gallery Builder
 * **100% Responsive** - Mobile Friendly
 * Beautiful **Skins** for Customization
@@ -149,6 +149,14 @@ Yes, it has full translation and localization support via the `woowgallery` text
 
 
 == Changelog ==
+
+= 1.2.5 - 23.08 =
+* Security: Admin AJAX endpoints now require a valid nonce and an editing capability. Previously a logged-in user without editing rights could request gallery query results that included titles and excerpts of non-public posts (CWE-862).
+* Security: Dynamic gallery queries validate post statuses and post types server-side, respect per-post read permissions, and no longer expose captions of password-protected posts.
+* Fixed: Button icons were misaligned in the admin under recent WordPress core button styles.
+* Fixed: An empty caption bar was painted over gallery thumbnails in the editor on recent WordPress versions.
+* Improved: Resolved all Plugin Check code errors and raised the minimum supported WordPress version to 5.5.
+* Updated: Tested up to WordPress 7.1.
 
 = 1.2.4 - 22.01 =
 * Fixed: Keyword stuffing in readme.txt and plugin name to comply with WordPress.org guidelines.
