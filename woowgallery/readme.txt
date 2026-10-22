@@ -4,7 +4,7 @@ Tags: gallery, elementor, images, photos, album
 Requires at least: 5.8
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.2.5
+Stable tag: 1.2.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -149,6 +149,9 @@ Yes, it has full translation and localization support via the `woowgallery` text
 
 
 == Changelog ==
+
+= 1.2.6 - 22.10 =
+* Security: Updated the bundled Freemius SDK to 2.13.5.
 
 = 1.2.5 - 23.08 =
 * Security: Admin AJAX endpoints now require a valid nonce and an editing capability. Previously a logged-in user without editing rights could request gallery query results that included titles and excerpts of non-public posts (CWE-862).
